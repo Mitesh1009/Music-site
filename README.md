@@ -6,7 +6,6 @@
 
 First, install the dependencies:
 
-```bash
 npm install
 # or
 npm install deep --legacy-peer-deps
