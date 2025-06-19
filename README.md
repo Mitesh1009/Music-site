@@ -2,43 +2,58 @@
 
 ## ✅ Step-by-Step
 
-### 🚀 Getting Started
+### 🛠️ Getting Started
 
 First, install the dependencies:
 
+```bash
 npm install
-# or
-npm install deep --legacy-peer-deps
-# or
+```
+
+**or**
+
+```bash
+npm install --legacy-peer-deps
+```  
+
+**or**
+
+```bash
 yarn install
+```
 
-Create a .env.local file in the root directory of your project to store sensitive environment variables:
+Create a `.env.local` file in the root directory of your project to store sensitive environment variables:
 
-JWT_SECRET_KEY=
-SPOTIFY_CLIENT_ID=
-SPOTIFY_CLIENT_SECRET=
+```env
+JWT_SECRET_KEY=SPOTIFY_CLIENT_ID=SPOTIFY_CLIENT_SECRET=
+```
 
 Then, run the development server:
 
+```bash
 npm run dev
-# or
+```
+
+**or**
+
+```bash
 yarn dev
+```
 
+## 🛠️ Tech Stack
 
-📦 Tech Stack
+**Framework:** Next.js  
+**Language:** JavaScript / TypeScript  
+**Styling:** Tailwind CSS / SCSS / CSS Modules (customize as needed)  
+**Deployment:** Vercel / Netlify / Custom server
 
-Framework: Next.js
-Language: JavaScript / TypeScript
-Styling: Tailwind CSS / SCSS / CSS Modules (customize as needed)
-Deployment: Vercel / Netlify / Custom server
+## 📁 Folder Structure
 
-📁 Folder Structure
-
-.
-├── app/         # App routes
-├── public/      # Static assets
-├── styles/      # CSS/SCSS files
-├── components/  # Reusable components
-├── lib/         # Utilities (optional)
+```
+├── app/                    # App routes  
+├── public/                 # Static assets  
+├── lib/                    # Utilities (optional)  
+├── components/             # Reusable components  
+├── styles/                 # CSS/SCSS files  
 └── README.md
-
+```
