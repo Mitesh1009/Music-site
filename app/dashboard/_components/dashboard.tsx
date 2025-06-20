@@ -6,7 +6,7 @@ import PlaylistCard from "@/app/_components/card/PlaylistCard";
 import PlaylistDialog from "@/app/_components/create-playlist/CreatePlaylistDialog";
 import styles from "./dashboard.module.scss";
 import axios from "axios";
-import PlaylistSongsModal from "@/app/dashboard/[playlistId]/_components/songs";
+import { useRouter } from "next/navigation";
 
 export interface Song {
   id?: string;
@@ -32,6 +32,7 @@ interface DashboardClientProps {
 }
 
 export default function Dashboard({ initialData }: DashboardClientProps) {
+  const router = useRouter();
   const [playlistData, setPlaylists] = useState<PlaylistData | null>(
     initialData
   );
@@ -54,6 +55,7 @@ export default function Dashboard({ initialData }: DashboardClientProps) {
             }
           : null
       );
+      router.refresh();
     } catch (err) {
       alert("Failed to create playlist.");
     } finally {
@@ -81,6 +83,7 @@ export default function Dashboard({ initialData }: DashboardClientProps) {
             }
           : null
       );
+      router.refresh();
     } catch (err) {
       alert("Failed to update playlist.");
     } finally {
@@ -101,56 +104,9 @@ export default function Dashboard({ initialData }: DashboardClientProps) {
             }
           : null
       );
+      router.refresh();
     } catch (err) {
       alert("Failed to delete playlist.");
-    }
-  };
-
-  const handleAddSong = async (playlistId: string, song: Song) => {
-    try {
-      const res = await axios.post("/api/song", { playlistId, song });
-      const newSongWithCorrectId = res.data;
-
-      setPlaylists((prev) =>
-        prev
-          ? {
-              ...prev,
-              playlists: prev.playlists.map((p) =>
-                p.id === playlistId
-                  ? { ...p, songs: [...p.songs, newSongWithCorrectId] }
-                  : p
-              ),
-            }
-          : null
-      );
-    } catch (err) {
-      console.error("Failed to add song", err);
-    }
-  };
-
-  const handleDeleteSong = async (playlistId: string, songId: string) => {
-    try {
-      await axios.delete("/api/song", {
-        data: { playlistId, songId },
-      });
-
-      setPlaylists((prev) =>
-        prev
-          ? {
-              ...prev,
-              playlists: prev.playlists.map((p) =>
-                p.id === playlistId
-                  ? {
-                      ...p,
-                      songs: p.songs.filter((s) => s.id !== songId),
-                    }
-                  : p
-              ),
-            }
-          : null
-      );
-    } catch (err) {
-      console.error("Failed to delete song", err);
     }
   };
 
